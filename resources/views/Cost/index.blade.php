@@ -37,7 +37,7 @@
 			<tbody>
 				@foreach($Cost as $Cost)
 				<tr>
-					<td>{{$Cost->id}}</td>
+					<td>{{$i++}}</td>
 					<td>{{$Cost->cost_name}}</td>
 					<td>{{$Cost->cost}}</td>
 					@foreach($Stock as $stock)

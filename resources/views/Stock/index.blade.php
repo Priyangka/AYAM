@@ -37,7 +37,7 @@
 			<tbody>
 				@foreach($stocks as $Stock)
 				<tr>
-					<td>{{$Stock->id}}</td>
+					<td>{{$i++}}</td>
 					<td>{{$Stock->stock_name}}</td>
 					<td>{{$Stock->stock_qty}}</td>
 					<td>{{$Stock->stock_unit}}</td>

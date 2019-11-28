@@ -7,7 +7,7 @@ use DB;
 use App\Stock;
 use App\Cost;
 use App\Product;
-use DataTables;
+use DataTable;
 class ChicController extends Controller
 {
     ////////////////		StockController			////////////////
@@ -16,8 +16,8 @@ class ChicController extends Controller
 	public function indexStock()
 	{
 		$stocks = Stock::all();
-
-		return view('stock.index', compact('stocks'));
+     $i=1; 
+		return view('stock.index', compact('stocks','i'));
 	}
 
 
@@ -143,8 +143,9 @@ class ChicController extends Controller
    {
      $Cost = Cost::all();
      $Stock = Stock::all();
+      $i=1; 
 
-     return view('cost.index', compact('Cost', 'Stock'));
+     return view('cost.index', compact('Cost', 'Stock','i'));
    }
 
 
@@ -263,8 +264,9 @@ class ChicController extends Controller
     public function indexProduct()
     {
       $product = Product::all();
+       $i=1; 
 
-      return view('product.index', compact('product'));
+      return view('product.index', compact('product','i'));
     }
 
 
