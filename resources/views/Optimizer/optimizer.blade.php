@@ -1,234 +1,36 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
-
-@php
-$wholeChicDemand;
-$wholeChicDemandUnit;
-$wholeChicPriceKg;
-$wholeChicWeightQty;
-
-
-$breastDemand;
-$breastDemandUnit;
-$breastPriceKg;
-$breastWeightQty;
-
-$wingDemand;
-$wingDemandUnit;
-$wingPriceKg;
-$wingWeightQty;
-
-
-$drumDemand;
-$drumDemandUnit;
-$drumPriceKg;
-$drumWeightQty;
-
-
-$thighDemand;
-$thighDemandUnit;
-$thighPriceKg;
-$thighWeightQty;
-
-
-
-$fullDemand;
-$fullDemandUnit;
-$fullPriceKg;
-$fullWeightQty;
-
-
-$stock;
-$stock_unit;
-
-
-@endphp
-
-
-
-@foreach($data as $data)
-
-
-@if($data->pro_name =='Ayam Bulat')
-
-@php
-$wholeChicDemand = $data->pro_demand;
-$wholeChicDemandUnit = $data->dem_unit;
-$wholeChicPriceKg = $data->price_per_kg;
-$wholeChicWeightQty = $data->weight_per_qty;
-
-if($wholeChicDemandUnit == 'Kg')
-{
-	$QtyWholeChic = $wholeChicDemand/$wholeChicWeightQty;
-	$QtyWholeChic = round($QtyWholeChic);
-	$oriWholeChic = $QtyWholeChic;
-}
-else
-{
-	$QtyWholeChic = round($wholeChicDemand);
-	$oriWholeChic = $QtyWholeChic;
-}
-
-if($data->stock_name == 'Ayam')
-{
-	$stock = $data->stock_qty;
-	$stock_unit = $data->stock_unit;
-
-	if($stock_unit == 'Kg')
-	{
-		$stockQty = $stock/$wholeChicWeightQty;
-		$stockQty = round($stockQty);
-		$oriStockQty = $stockQty;
-	}
-	else
-	{
-		$stockQty = round($stock);
-		$oriStockQty = $stockQty;
-	}
-}
-
-
-@endphp
-
-
-
-@elseif($data->pro_name =='Dada')
-
-
-@php
-$breastDemand = $data->pro_demand;
-$breastDemandUnit = $data->dem_unit;
-$breastPriceKg = $data->price_per_kg;
-$breastWeightQty = $data->weight_per_qty;
-
-if($breastDemandUnit == 'Kg')
-{
-	$QtyBreast = $breastDemand/$breastWeightQty;
-	$QtyBreast = round($QtyBreast);
-	$oriBreast = $QtyBreast;
-}
-else
-{
-	$QtyBreast = round($breastDemand);
-	$oriBreast = $QtyBreast;
-}
-
-
-
-@endphp
-
-
-
-
-@elseif($data->pro_name =='Kepak')
-
-@php
-$wingDemand = $data->pro_demand;
-$wingDemandUnit = $data->dem_unit;
-$wingPriceKg = $data->price_per_kg;
-$wingWeightQty = $data->weight_per_qty;
-
-if($wingDemandUnit == 'Kg')
-{
-	$QtyWing = $wingDemand/$wingWeightQty;
-	$QtyWing = round($QtyWing);
-	$oriWing = $QtyWing;
-}
-else
-{
-	$QtyWing = round($wingDemand);
-	$oriWing = $QtyWing;
-}
-
-
-@endphp
-
-
-
-
-@elseif($data->pro_name =='Drumstik')
-
-@php
-$drumDemand = $data->pro_demand;
-$drumDemandUnit = $data->dem_unit;
-$drumPriceKg = $data->price_per_kg;
-$drumWeightQty = $data->weight_per_qty;
-
-if($drumDemandUnit == 'Kg')
-{
-	$QtyDrum = $drumDemand/$drumWeightQty;
-	$QtyDrum = round($QtyDrum);
-	$oriDrum = $QtyDrum;
-}
-else
-{
-	$QtyDrum = round($drumDemand);
-	$oriDrum = $QtyDrum;
-}
-
-
-@endphp
-
-
-
-
-@elseif($data->pro_name =='Paha')
-
-@php
-$thighDemand = $data->pro_demand;
-$thighDemandUnit = $data->dem_unit;
-$thighPriceKg = $data->price_per_kg;
-$thighWeightQty = $data->weight_per_qty;
-
-if($thighDemandUnit == 'Kg')
-{
-	$QtyThigh = $thighDemand/$thighWeightQty;
-	$QtyThigh = round($QtyThigh);
-	$oriThigh = $QtyThigh;
-}
-else
-{
-	$QtyThigh = round($thighDemand);
-	$oriThigh = $QtyThigh;
-}
-
-
-@endphp
-
-
-
-@elseif($data->pro_name =='Peha Penuh')
-
-@php
-$fullDemand = $data->pro_demand;
-$fullDemandUnit = $data->dem_unit;
-$fullPriceKg = $data->price_per_kg;
-$fullWeightQty = $data->weight_per_qty;
-
-if($fullDemandUnit == 'Kg')
-{
-	$QtyFull = $fullDemand/$fullWeightQty;
-	$QtyFull = round($QtyFull);
-	$oriFull = $QtyFull;
-}
-else
-{
-	$QtyFull = round($fullDemand);
-	$oriFull = $QtyFull;
-}
-
-
-@endphp
-
-
-
-
-@endif
-
-
-@endforeach
+<head>
+  <meta charset="utf-8"> 
+
+  <link rel="stylesheet" href="/adminlte/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="/adminlte/plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="/adminlte/plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="/adminlte/plugins/summernote/summernote-bs4.css">
+  <link  rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet"> 
+     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"> </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js">    </script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js">        </script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>  
+</head>
 
 
 @php

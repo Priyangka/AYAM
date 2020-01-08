@@ -49,7 +49,7 @@ Route::delete('/Cost/index/{id}', 'ChicController@destroyCost')->name('deleteCos
 //Route for Product
 Route::get('/Product/createProduct/', 'ChicController@createProduct')->name('createProduct');
 Route::post('/Product/createProduct/', 'ChicController@storeProduct')->name('storeProduct');
-Route::get('/Product/index/', 'ChicController@indexProduct')->name('indexProduct');
+Route::get('/Product/index', 'ChicController@indexProduct')->name('indexProduct');
 Route::get('/Product/show/{id}', 'ChicController@viewProduct')->name('showProduct');
 Route::get('/Product/edit/{id}', 'ChicController@editProduct')->name('editProduct');
 Route::post('/Product/edit/{id}', 'ChicController@updateProduct')->name('updateProduct');

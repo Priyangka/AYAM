@@ -393,22 +393,229 @@ class ChicController extends Controller
         return view('Product.showProduct', compact('product')); 
     }
 
+
+
 	//Optimizer
-    public function optimizer()
+     public function optimizer()
     {
      $data = DB::table('product')
-     ->join('stock', 'stock.id', '=', 'product.stock_id')	
+     ->join('stock', 'stock.id', '=', 'product.stock_id') 
      ->select('product.pro_name','product.pro_demand', 'product.dem_unit', 'product.price_per_kg', 'product.weight_per_qty', 'stock_name', 'stock.stock_qty', 'stock.stock_unit')
      ->get();
-
-		// $cost = DB::table('cost')
-		// ->join('stock','stock.id','=','cost.stock_id')
-		// ->select('cost_name','cost','stock_id')
-		// ->get();
-
+    
      $costs = Cost::all();
+     $wholeChicDemand=0;
+$wholeChicDemandUnit=0;
+$wholeChicPriceKg=0;
+$wholeChicWeightQty=1;
 
-		// return('product.pro_name');
-     return view('Optimizer.optimizer', compact('data','costs'));
+
+$breastDemand=0;
+$breastDemandUnit=0;
+$breastPriceKg=0;
+$breastWeightQty=0;
+
+$wingDemand=0;
+$wingDemandUnit=0;
+$wingPriceKg=0;
+$wingWeightQty=0;
+
+
+$drumDemand=0;
+$drumDemandUnit=0;
+$drumPriceKg=0;
+$drumWeightQty=0;
+
+
+$thighDemand=0;
+$thighDemandUnit=0;
+$thighPriceKg=0;
+$thighWeightQty=0;
+
+
+
+$fullDemand=0;
+$fullDemandUnit=0;
+$fullPriceKg=0;
+$fullWeightQty=0;
+
+
+$stock=0;
+$stock_unit=0;
+
+$oriStockQty =0;
+$stockQty=0;
+$oriBreast =0;
+$QtyBreast=0;
+$oriDrum =0;
+ $QtyDrum=0;
+ $oriWholeChic =0;
+  $QtyWholeChic=0;
+  $oriThigh =0;
+   $QtyThigh=0;
+   $oriWing =0;
+    $QtyWing=0;
+     $oriFull = 0;
+     $QtyFull=0;
+
+foreach($data as $data)
+{
+
+if($data->pro_name =='Ayam Bulat')
+{
+$wholeChicDemand = $data->pro_demand;
+$wholeChicDemandUnit = $data->dem_unit;
+$wholeChicPriceKg = $data->price_per_kg;
+$wholeChicWeightQty = $data->weight_per_qty;
+
+if($wholeChicDemandUnit == 'Kg')
+{
+  $QtyWholeChic = $wholeChicDemand/$wholeChicWeightQty;
+  $QtyWholeChic = round($QtyWholeChic);
+  $oriWholeChic = $QtyWholeChic;
+}
+else
+{
+  $QtyWholeChic = round($wholeChicDemand);
+  $oriWholeChic = $QtyWholeChic;
+}
+}
+if($data->stock_name == 'Ayam')
+{
+  $stock = $data->stock_qty;
+  $stock_unit = $data->stock_unit;
+
+  if($stock_unit == 'Kg')
+  {
+    $stockQty = $stock/$wholeChicWeightQty;
+    $stockQty = round($stockQty);
+    $oriStockQty = $stockQty;
+  }
+  else
+  {
+    $stockQty = round($stock);
+    $oriStockQty = $stockQty;
+  }
+}
+
+
+elseif($data->pro_name =='Dada')
+{
+$breastDemand = $data->pro_demand;
+$breastDemandUnit = $data->dem_unit;
+$breastPriceKg = $data->price_per_kg;
+$breastWeightQty = $data->weight_per_qty;
+
+if($breastDemandUnit == 'Kg')
+{
+  $QtyBreast = $breastDemand/$breastWeightQty;
+  $QtyBreast = round($QtyBreast);
+  $oriBreast = $QtyBreast;
+}
+else
+{
+  $QtyBreast = round($breastDemand);
+  $oriBreast = $QtyBreast;
+}
+
+}
+
+elseif($data->pro_name =='Kepak')
+
+{
+$wingDemand = $data->pro_demand;
+$wingDemandUnit = $data->dem_unit;
+$wingPriceKg = $data->price_per_kg;
+$wingWeightQty = $data->weight_per_qty;
+
+if($wingDemandUnit == 'Kg')
+{
+  $QtyWing = $wingDemand/$wingWeightQty;
+  $QtyWing = round($QtyWing);
+  $oriWing = $QtyWing;
+}
+else
+{
+  $QtyWing = round($wingDemand);
+  $oriWing = $QtyWing;
+}
+
+}
+
+
+elseif($data->pro_name =='Drumstik')
+
+{
+$drumDemand = $data->pro_demand;
+$drumDemandUnit = $data->dem_unit;
+$drumPriceKg = $data->price_per_kg;
+$drumWeightQty = $data->weight_per_qty;
+
+if($drumDemandUnit == 'Kg')
+{
+  $QtyDrum = $drumDemand/$drumWeightQty;
+  $QtyDrum = round($QtyDrum);
+  $oriDrum = $QtyDrum;
+}
+else
+{
+  $QtyDrum = round($drumDemand);
+  $oriDrum = $QtyDrum;
+}
+
+}
+
+
+
+
+elseif($data->pro_name =='Paha')
+
+{
+$thighDemand = $data->pro_demand;
+$thighDemandUnit = $data->dem_unit;
+$thighPriceKg = $data->price_per_kg;
+$thighWeightQty = $data->weight_per_qty;
+
+if($thighDemandUnit == 'Kg')
+{
+  $QtyThigh = $thighDemand/$thighWeightQty;
+  $QtyThigh = round($QtyThigh);
+  $oriThigh = $QtyThigh;
+}
+else
+{
+  $QtyThigh = round($thighDemand);
+  $oriThigh = $QtyThigh;
+}
+}
+
+
+
+elseif($data->pro_name =='Peha Penuh')
+
+{
+$fullDemand = $data->pro_demand;
+$fullDemandUnit = $data->dem_unit;
+$fullPriceKg = $data->price_per_kg;
+$fullWeightQty = $data->weight_per_qty;
+
+if($fullDemandUnit == 'Kg')
+{
+  $QtyFull = $fullDemand/$fullWeightQty;
+  $QtyFull = round($QtyFull);
+  $oriFull = $QtyFull;
+}
+else
+{
+  $QtyFull = round($fullDemand);
+  $oriFull = $QtyFull;
+}
+
+}
+
+}
+     return view('Optimizer.optimizer', compact('data','costs','wholeChicDemand','wholeChicDemandUnit','wholeChicPriceKg','wholeChicWeightQty','breastDemand','breastDemandUnit','breastPriceKg','breastWeightQty','wingDemand','wingDemandUnit','wingPriceKg','wingWeightQty','drumDemand','drumDemandUnit','drumPriceKg', 'drumWeightQty','thighWeightQty','thighPriceKg','fullWeightQty','fullPriceKg','QtyWing','QtyBreast','QtyDrum','QtyThigh','QtyFull','QtyWholeChic','stockQty','oriStockQty','oriFull','oriThigh','oriDrum','oriBreast','oriWing','oriWholeChic'));
    }
  }
+
+
